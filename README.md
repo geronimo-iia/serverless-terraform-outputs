@@ -1,17 +1,30 @@
-# serverless-terraform-outputs
+# serverless-(aws-)terraform-outputs
 
 Provides variable substitution resolution from Terraform outputs.
 
-It support terrafrom workspace managed on :
+It support terraform workspace managed on :
 - s3 bucket
 - local path using terraform command.
 
 
 ## Usage
 
+You can install this version with the name `serverless-aws-terraform-outputs`
+rather than `serverless-terraform-outputs`
+
+```bash
+npm install serverless-aws-terraform-outputs
+```
+
+We could use `serverless-terraform-outputs` when this pull request will be (or not) accepted (see https://github.com/rundeck/serverless-terraform-outputs/pull/7)
+
+
 ### With state stored on s3
 
 ```yaml
+plugins:
+  - serverless-aws-terraform-outputs
+
 custom:
     stage: ${opt:stage, self:provider.stage}
     tf_workspace_foo: s3://my-state_bucket/main-account/eu-west-1/foo/${self:custom.stage}
@@ -76,7 +89,9 @@ custom:
 
 ## Change log
 
-## 0.1.0 (dev)
+## 0.1.0
+
+- use `serverless-aws-terraform-outputs` name in order to use this version before original project will be updated.
 
 - add dependency on "aws-sdk" and aws client to retreive shared terraform state stored on S3.
 - introduce TFWorkspace to load several workspace
